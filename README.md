@@ -12,15 +12,15 @@ CONTENTS OF THIS FILE
 
 INTRODUCTION
 ------------
-CSSGram is a simple module to apply css filters on image field type 
+CSSGram is a simple module to apply CSS filters on image field type 
 using field formatters for recreating Instagram filters with CSS filters
 and blend modes. 
 
 
 MODULE DETAILS
 --------------
-CSSGram Module uses CSSGram library for adding filter effects via css to
-the image fields. Basically module extends Field Formatter Settings to 
+CSSGram Module uses CSSGram library for adding filter effects via CSS to
+the image fields. Basically, module extends Field Formatter Settings to 
 add image filter for that particular field. 
  
 To configure image filters for a field, visit Manage Display settings
@@ -35,8 +35,8 @@ As such module does not contain any site wide configuration.
 
 TROUBLESHOOTING
 ---------------
-As of now, CSSGram uses css for producing image filters and if the image
-filters are not working propoerly there could be following issues:
+As of now, CSSGram uses CSS for producing image filters and if the image
+filters are not working properly there could be following issues:
 * CSS override
 * CSSGram css file not available.
 
@@ -52,7 +52,7 @@ Q: Can CSSGram filters be used as Image Effects in Image Presets?
 A: No, CSSGram is a simple module which makes use of CSSGram library.
 
 
-Q: Is the module compatinle with views?
+Q: Is the module compatible with views?
 
 A: Once this issue gets fixed: https://www.drupal.org/node/2686145, it 
 would become compatible with views too. 
