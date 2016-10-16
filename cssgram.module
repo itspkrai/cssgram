@@ -8,6 +8,17 @@
 use \Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
+ * Implements hook_help().
+ */
+function cssgram_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.cssgram':
+      $output = file_get_contents(drupal_get_path('module', 'cssgram') . '/README.md');
+      return $output;
+  }
+}
+
+/**
  * Implements hook_field_formatter_info_alter().
  */
 function cssgram_field_formatter_info_alter(array &$info) {
