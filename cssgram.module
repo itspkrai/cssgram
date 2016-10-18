@@ -6,6 +6,7 @@
  */
 
 use \Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().
