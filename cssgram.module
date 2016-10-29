@@ -56,3 +56,26 @@ function cssgram_field_formatter_settings_form_alter(&$settings_form, $context) 
     );
   }
 }
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function cssgram_preprocess_field(&$variables) {
+  if ($variables['element']['#formatter'] == 'image') {
+    $entity_type = $variables['element']['#entity_type'];
+    $field_name  = $variables['element']['#field_name'];
+    $bundle      = $variables['element']['#bundle'];
+    $view_mode   = $variables['element']['#view_mode'];
+    // Get the field formatter settings.
+    $formatter_settings = field_formatter_settings_get_instance_display_settings($entity_type, $field_name, $bundle, $view_mode);
+    // Make the setting available in the field template
+    $field_display['cssgram_filter'] = $formatter_settings['cssgram_filter'];
+    $variables['attributes']['class'] = $field_display['cssgram_filter'];
+
+    foreach($variables['items'] as $key => $item){
+      $variables['items'][ $key ]['#item']['attributes']['class'][] = $field_display['cssgram_filter'];
+    }
+    $variables['#attached']['library'] = drupal_add_css('//cssgram-cssgram.netdna-ssl.com/cssgram.min.css', array('type' => 'external'));
+  }
+}
+
