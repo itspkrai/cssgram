@@ -1,0 +1,7 @@
+name = CSSGram
+description = Recreating Instagram filters for Images to apply as CSS Filters.
+core = 7.x
+dependencies[] = image
+dependencies[] = field_formatter_settings
+file[] = includes/cssgram.filters.inc
+package = CSSGram
