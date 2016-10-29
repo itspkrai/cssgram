@@ -14,3 +14,27 @@ function cssgram_help($path, $arg) {
       return $output;
   }
 }
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function cssgram_field_formatter_info_alter(&$info) {
+  $info['image']['settings']['cssgram_filter'] = '';
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function cssgram_field_formatter_settings_summary_alter(&$summary, $context) {
+  if ($context['instance']['display'][$context['view_mode']]['type'] == 'image') {
+    $display = $context['instance']['display'][$context['view_mode']];
+    $filter_summary = $display['settings']['cssgram_filter'];
+    if (!empty($summary)) {
+      $summary .= '';
+    }
+    if ($filter_summary) {
+      $summary .= ',' . ' ';
+      $summary .=  t('Filter Selected:') . ' ' . $filter_summary;
+    }
+  }
+}
