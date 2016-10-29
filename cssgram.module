@@ -4,3 +4,15 @@
  * @file
  * Contains module code.
  */
+
+/**
+ * Implements hook_help().
+ */
+
+function cssgram_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#cssgram':
+      $output = file_get_contents(drupal_get_path('module', 'cssgram') . '/README.md');
+      return $output;
+  }
+}
