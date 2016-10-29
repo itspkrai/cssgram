@@ -38,3 +38,20 @@ function cssgram_field_formatter_settings_summary_alter(&$summary, $context) {
     }
   }
 }
+
+/**
+ * Implements hook_field_formatter_settings_form_alter().
+ */
+function cssgram_field_formatter_settings_form_alter(&$settings_form, $context) {
+  require('includes/cssgram.filters.inc');
+  if (($context['instance']['display'][$context['view_mode']]['type']) == 'image') {
+    $display = $context['instance']['display'][$context['view_mode']];
+    $settings = $display['settings'];
+    $settings_form['cssgram_filter'] = array(
+      '#type' => 'select',
+      '#title' => t('Select Filter'),
+      '#default_value' => $settings['cssgram_filter'],
+      '#options' => $filters,
+    );
+  }
+}
