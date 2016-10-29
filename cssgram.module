@@ -8,11 +8,51 @@
 /**
  * Implements hook_help().
  */
-
 function cssgram_help($path, $arg) {
   switch ($path) {
     case 'admin/help#cssgram':
       $output = file_get_contents(drupal_get_path('module', 'cssgram') . '/README.md');
       return $output;
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function cssgram_field_formatter_info_alter(&$info) {
+  $info['image']['settings']['cssgram_filter'] = '';
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function cssgram_field_formatter_settings_summary_alter(&$summary, $context) {
+  if ($context['instance']['display'][$context['view_mode']]['type'] == 'image') {
+    $display = $context['instance']['display'][$context['view_mode']];
+    $filter_summary = $display['settings']['cssgram_filter'];
+    if (!empty($summary)) {
+      $summary .= '';
+    }
+    if ($filter_summary) {
+      $summary .= ',' . ' ';
+      $summary .=  t('Filter Selected:') . ' ' . $filter_summary;
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_settings_form_alter().
+ */
+function cssgram_field_formatter_settings_form_alter(&$settings_form, $context) {
+  require('includes/cssgram.filters.inc');
+  if (($context['instance']['display'][$context['view_mode']]['type']) == 'image') {
+    $display = $context['instance']['display'][$context['view_mode']];
+    $settings = $display['settings'];
+    $settings_form['cssgram_filter'] = array(
+      '#type' => 'select',
+      '#title' => t('Select Filter'),
+      '#default_value' => $settings['cssgram_filter'],
+      '#options' => $filters,
+    );
   }
 }
